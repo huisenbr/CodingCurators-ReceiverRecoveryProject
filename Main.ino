@@ -2,14 +2,19 @@
 #include "RTClib.h"
 
 RTC_DS3231 rtc;
-const int LED_PIN = 9;
+const int LED_PIN = 9;       // goes to the MOSFET gate
 const int BUTTON_PIN = 2;
 
-const bool SET_CLOCK = false;    // true for ONE upload to set the time, then back to false
-const int PRE_DELAY_SEC = 40;    // countdown after the press, before it fires
-const int BURN_MS = 4000;        // how long each fire lasts (stand-in for the burn)
+const bool SET_CLOCK = false;        // true for ONE upload to set the time, then back to false
+const bool USE_FIXED_DATE = false;   // false = fire ALARM_DELAY_SEC after arming, true = fire at FIXED_ALARM
+const long ALARM_DELAY_SEC = 120;    // test alarm: 2 minutes after the button press
+const int BURN_MS = 4000;            // how long the fire lasts (stand-in for the burn)
 
-int shots = 0;
+// Used only when USE_FIXED_DATE is true: year, month, day, hour, minute, second
+DateTime FIXED_ALARM(2026, 10, 12, 20, 30, 0);
+
+bool armed = false;
+DateTime alarmTime;
 int lastSecond = -1;
 
 void printTime(const DateTime& t) {
@@ -23,6 +28,7 @@ void printTime(const DateTime& t) {
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, LOW);
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   Serial.begin(9600);
   if (!rtc.begin()) {
@@ -33,37 +39,46 @@ void setup() {
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
     Serial.println("Clock set");
   }
-  Serial.println("Press button to fire");
+  Serial.println("Press button to arm");
 }
 
 void loop() {
   DateTime now = rtc.now();
 
-  if (digitalRead(BUTTON_PIN) == LOW) {
-    shots++;
-    Serial.print("Button pressed. Fire #");
-    Serial.println(shots);
-
-    for (int i = PRE_DELAY_SEC; i > 0; i--) {
-      Serial.print("Firing in ");
-      Serial.println(i);
-      delay(1000);
+  // Arm on button press (only when idle)
+  if (!armed && digitalRead(BUTTON_PIN) == LOW) {
+    DateTime target = USE_FIXED_DATE ? FIXED_ALARM : now + TimeSpan(ALARM_DELAY_SEC);
+    if (target.unixtime() <= now.unixtime()) {
+      Serial.println("Alarm time is in the past. Not armed.");
+    } else {
+      alarmTime = target;
+      armed = true;
+      Serial.print("ARMED. Fires at ");
+      printTime(alarmTime);
     }
-
-    Serial.print("FIRE at ");
-    printTime(rtc.now());
-    digitalWrite(LED_PIN, HIGH);
-    delay(BURN_MS);
-    digitalWrite(LED_PIN, LOW);
-    Serial.println("Done");
-
     while (digitalRead(BUTTON_PIN) == LOW) { }   // wait for release
     delay(200);                                  // simple debounce
   }
 
-  if (now.second() != lastSecond) {   // print the time once per second
+  // Fire once when the alarm time arrives
+  if (armed && now.unixtime() >= alarmTime.unixtime()) {
+    Serial.print("FIRE at ");
+    printTime(now);
+    digitalWrite(LED_PIN, HIGH);
+    delay(BURN_MS);
+    digitalWrite(LED_PIN, LOW);
+    armed = false;
+    Serial.println("Done. Press button to arm again");
+  }
+
+  // Print status once per second
+  if (now.second() != lastSecond) {
     lastSecond = now.second();
     printTime(now);
+    if (armed) {
+      Serial.print("  seconds left: ");
+      Serial.println(alarmTime.unixtime() - now.unixtime());
+    }
   }
   delay(50);
 }
