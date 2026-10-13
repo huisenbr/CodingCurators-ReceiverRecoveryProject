@@ -6,7 +6,7 @@ const int LED_PIN = 9;
 const int BUTTON_PIN = 2;
 
 const bool SET_CLOCK = false;    // true for ONE upload to set the time, then back to false
-const int PRE_DELAY_SEC = 5;     // countdown after the press, before it fires
+const int PRE_DELAY_SEC = 40;    // countdown after the press, before it fires
 const int BURN_MS = 4000;        // how long each fire lasts (stand-in for the burn)
 
 int shots = 0;
