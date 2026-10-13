@@ -5,15 +5,10 @@ RTC_DS3231 rtc;
 const int LED_PIN = 9;
 const int BUTTON_PIN = 2;
 
-const bool SET_CLOCK = false;      // true for ONE upload to set the time, then back to false
-const long FIRST_DELAY = 30;       // seconds from button press to first fire
-const long INTERVAL = 30;          // seconds between fires
-const int FIRE_COUNT = 3;          // how many times to fire per arming
-const int BURN_MS = 3000;          // how long each fire lasts (stand-in for the burn)
+const bool SET_CLOCK = false;   // true for ONE upload to set the time, then back to false
+const int BURN_MS = 4000;       // how long each fire lasts (stand-in for the burn)
 
-bool armed = false;
 int shots = 0;
-DateTime nextFire;
 int lastSecond = -1;
 
 void printTime(const DateTime& t) {
@@ -37,47 +32,31 @@ void setup() {
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
     Serial.println("Clock set");
   }
-  Serial.println("Press button to arm");
+  Serial.println("Press button to fire");
 }
 
 void loop() {
   DateTime now = rtc.now();
 
-  // Arm on button press (only when idle)
-  if (!armed && digitalRead(BUTTON_PIN) == LOW) {
-    armed = true;
-    shots = 0;
-    nextFire = now + TimeSpan(FIRST_DELAY);
-    Serial.print("Armed. First fire at ");
-    printTime(nextFire);
-    delay(300);   // simple debounce
-  }
+  if (digitalRead(BUTTON_PIN) == LOW) {
+    shots++;
+    Serial.print("Fire #");
+    Serial.print(shots);
+    Serial.print(" at ");
+    printTime(now);
 
-  // Fire when the scheduled time arrives
-  if (armed && now.unixtime() >= nextFire.unixtime()) {
     digitalWrite(LED_PIN, HIGH);
     delay(BURN_MS);
     digitalWrite(LED_PIN, LOW);
-    shots++;
-    Serial.print("Fired ");
-    Serial.print(shots);
-    Serial.print(" of ");
-    Serial.println(FIRE_COUNT);
+    Serial.println("Done");
 
-    if (shots >= FIRE_COUNT) {
-      armed = false;
-      Serial.println("Done. Press button to arm again");
-    } else {
-      nextFire = nextFire + TimeSpan(INTERVAL);
-      Serial.print("Next fire at ");
-      printTime(nextFire);
-    }
+    while (digitalRead(BUTTON_PIN) == LOW) { }   // wait for release
+    delay(200);                                  // simple debounce
   }
 
-  // Print the time once per second
-  if (now.second() != lastSecond) {
+  if (now.second() != lastSecond) {   // print the time once per second
     lastSecond = now.second();
     printTime(now);
   }
-  delay(100);
+  delay(50);
 }
