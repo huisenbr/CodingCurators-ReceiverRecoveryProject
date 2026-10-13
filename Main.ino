@@ -5,12 +5,15 @@ RTC_DS3231 rtc;
 const int LED_PIN = 9;
 const int BUTTON_PIN = 2;
 
-const bool SET_CLOCK = false;     // set true for ONE upload to set the time, then back to false
-const long DELAY_SECONDS = 120;   // test alarm: 2 minutes after arming
+const bool SET_CLOCK = false;      // true for ONE upload to set the time, then back to false
+const long FIRST_DELAY = 30;       // seconds from button press to first fire
+const long INTERVAL = 30;          // seconds between fires
+const int FIRE_COUNT = 3;          // how many times to fire per arming
+const int BURN_MS = 3000;          // how long each fire lasts (stand-in for the burn)
 
 bool armed = false;
-bool fired = false;
-DateTime alarmTime;
+int shots = 0;
+DateTime nextFire;
 int lastSecond = -1;
 
 void printTime(const DateTime& t) {
@@ -40,22 +43,39 @@ void setup() {
 void loop() {
   DateTime now = rtc.now();
 
+  // Arm on button press (only when idle)
   if (!armed && digitalRead(BUTTON_PIN) == LOW) {
     armed = true;
-    alarmTime = now + TimeSpan(DELAY_SECONDS);
-    Serial.print("Armed. Fires at ");
-    printTime(alarmTime);
+    shots = 0;
+    nextFire = now + TimeSpan(FIRST_DELAY);
+    Serial.print("Armed. First fire at ");
+    printTime(nextFire);
+    delay(300);   // simple debounce
   }
 
-  if (armed && !fired && now.unixtime() >= alarmTime.unixtime()) {
+  // Fire when the scheduled time arrives
+  if (armed && now.unixtime() >= nextFire.unixtime()) {
     digitalWrite(LED_PIN, HIGH);
-    delay(3000);                      // stand-in for the 3 second burn
+    delay(BURN_MS);
     digitalWrite(LED_PIN, LOW);
-    fired = true;
-    Serial.println("Fired. Idle now.");
+    shots++;
+    Serial.print("Fired ");
+    Serial.print(shots);
+    Serial.print(" of ");
+    Serial.println(FIRE_COUNT);
+
+    if (shots >= FIRE_COUNT) {
+      armed = false;
+      Serial.println("Done. Press button to arm again");
+    } else {
+      nextFire = nextFire + TimeSpan(INTERVAL);
+      Serial.print("Next fire at ");
+      printTime(nextFire);
+    }
   }
 
-  if (now.second() != lastSecond) {   // print once per second
+  // Print the time once per second
+  if (now.second() != lastSecond) {
     lastSecond = now.second();
     printTime(now);
   }
