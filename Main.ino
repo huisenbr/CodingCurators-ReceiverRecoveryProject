@@ -5,8 +5,9 @@ RTC_DS3231 rtc;
 const int LED_PIN = 9;
 const int BUTTON_PIN = 2;
 
-const bool SET_CLOCK = false;   // true for ONE upload to set the time, then back to false
-const int BURN_MS = 4000;       // how long each fire lasts (stand-in for the burn)
+const bool SET_CLOCK = false;    // true for ONE upload to set the time, then back to false
+const int PRE_DELAY_SEC = 5;     // countdown after the press, before it fires
+const int BURN_MS = 4000;        // how long each fire lasts (stand-in for the burn)
 
 int shots = 0;
 int lastSecond = -1;
@@ -40,11 +41,17 @@ void loop() {
 
   if (digitalRead(BUTTON_PIN) == LOW) {
     shots++;
-    Serial.print("Fire #");
-    Serial.print(shots);
-    Serial.print(" at ");
-    printTime(now);
+    Serial.print("Button pressed. Fire #");
+    Serial.println(shots);
 
+    for (int i = PRE_DELAY_SEC; i > 0; i--) {
+      Serial.print("Firing in ");
+      Serial.println(i);
+      delay(1000);
+    }
+
+    Serial.print("FIRE at ");
+    printTime(rtc.now());
     digitalWrite(LED_PIN, HIGH);
     delay(BURN_MS);
     digitalWrite(LED_PIN, LOW);
