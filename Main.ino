@@ -22,7 +22,7 @@ void setup() {
   digitalWrite(FIRE_PIN, LOW);
   pinMode(FIRE_PIN, OUTPUT);
   digitalWrite(FIRE_PIN, LOW);
-  Serial.begin(115200);
+  Serial.begin(9600);
   coeff = 2.0 * cos(2.0 * PI * TARGET_HZ / SAMPLE_RATE);
   Serial.print("Listening for ");
   Serial.print(TARGET_HZ);
