@@ -2,7 +2,7 @@ const int FIRE_PIN = 9;       // MOSFET gate, driving the burn wire
 
 // ===== EDIT THESE =====
 const unsigned long DELAY_SEC = 10;       // seconds after power up before it fires
-const unsigned long BURN_MS = 1500;       // how long the burn lasts (start short, increase slowly)
+const unsigned long BURN_MS = 3000;       // how long the burn lasts (start short, increase slowly)
 // ======================
 
 const unsigned long MAX_BURN_MS = 8000;   // safety cap, no burn can ever exceed this
