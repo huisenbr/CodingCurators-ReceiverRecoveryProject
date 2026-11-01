@@ -1,53 +1,54 @@
-const int TRIG_PIN = 7;
-const int ECHO_PIN = 8;
+const int MIC_PIN = A0;
 const int FIRE_PIN = 9;       // MOSFET gate, same as before
 
 // ===== EDIT THESE =====
-const int TRIGGER_CM = 15;              // fires when something is closer than this
-const int HITS_NEEDED = 3;              // readings in a row required, avoids false triggers
-const unsigned long ON_MS = 3000;       // how long the output stays on
+const int THRESHOLD = 100;                // sound swing (0 to 1023) that counts as a clap
+const unsigned long WINDOW_MS = 1500;     // second clap must land within this long
+const unsigned long MIN_GAP_MS = 150;     // ignores echo and ringing from the first clap
+const unsigned long ON_MS = 3000;         // how long the output stays on
 // ======================
 
 bool done = false;
-int hits = 0;
+bool haveFirst = false;
+unsigned long firstAt = 0;
 
-long readCm() {
-  digitalWrite(TRIG_PIN, LOW);
-  delayMicroseconds(2);
-  digitalWrite(TRIG_PIN, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(TRIG_PIN, LOW);
-  long us = pulseIn(ECHO_PIN, HIGH, 30000UL);   // 30 ms timeout
-  if (us == 0) return -1;                       // no echo
-  return us / 58;                               // microseconds to cm
+int soundLevel() {
+  int lo = 1023, hi = 0;
+  unsigned long start = millis();
+  while (millis() - start < 30) {         // 30 ms sample window
+    int v = analogRead(MIC_PIN);
+    if (v < lo) lo = v;
+    if (v > hi) hi = v;
+  }
+  return hi - lo;
 }
 
 void setup() {
   digitalWrite(FIRE_PIN, LOW);
   pinMode(FIRE_PIN, OUTPUT);
   digitalWrite(FIRE_PIN, LOW);
-  pinMode(TRIG_PIN, OUTPUT);
-  pinMode(ECHO_PIN, INPUT);
   Serial.begin(9600);
-  Serial.println("Armed. Move something close to the sensor.");
+  Serial.println("Armed. Double clap to trigger.");
 }
 
 void loop() {
   if (done) return;
 
-  long cm = readCm();
-  Serial.println(cm);
+  int level = soundLevel();
+  Serial.println(level);
 
-  if (cm > 0 && cm < TRIGGER_CM) hits++;
-  else hits = 0;
-
-  if (hits >= HITS_NEEDED) {
-    done = true;                          // set first so it only fires once
-    Serial.println("TRIGGERED");
-    digitalWrite(FIRE_PIN, HIGH);
-    delay(ON_MS);
-    digitalWrite(FIRE_PIN, LOW);
-    Serial.println("Done. Reset the board to run again.");
+  if (level > THRESHOLD) {
+    unsigned long now = millis();
+    if (haveFirst && now - firstAt >= MIN_GAP_MS && now - firstAt <= WINDOW_MS) {
+      done = true;                        // set first so it only fires once
+      Serial.println("TRIGGERED");
+      digitalWrite(FIRE_PIN, HIGH);
+      delay(ON_MS);
+      digitalWrite(FIRE_PIN, LOW);
+      Serial.println("Done. Reset the board to run again.");
+    } else if (!haveFirst || now - firstAt > WINDOW_MS) {
+      haveFirst = true;
+      firstAt = now;
+    }
   }
-  delay(60);
 }
