@@ -1,39 +1,53 @@
-const int LED_PIN = 9;        // LED on pin 9 (swap to LED_BUILTIN to use the onboard LED)
+const int TRIG_PIN = 7;
+const int ECHO_PIN = 8;
+const int FIRE_PIN = 9;       // MOSFET gate, same as before
 
 // ===== EDIT THESE =====
-const unsigned long DELAY_SEC = 10;       // seconds after power up before the LED turns on
-const unsigned long ON_MS = 3000;         // how long the LED stays on
+const int TRIGGER_CM = 15;              // fires when something is closer than this
+const int HITS_NEEDED = 3;              // readings in a row required, avoids false triggers
+const unsigned long ON_MS = 3000;       // how long the output stays on
 // ======================
 
 bool done = false;
-int lastShown = -1;
+int hits = 0;
+
+long readCm() {
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+  long us = pulseIn(ECHO_PIN, HIGH, 30000UL);   // 30 ms timeout
+  if (us == 0) return -1;                       // no echo
+  return us / 58;                               // microseconds to cm
+}
 
 void setup() {
-  pinMode(LED_PIN, OUTPUT);
-  digitalWrite(LED_PIN, LOW);
+  digitalWrite(FIRE_PIN, LOW);
+  pinMode(FIRE_PIN, OUTPUT);
+  digitalWrite(FIRE_PIN, LOW);
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
   Serial.begin(9600);
-  Serial.print("LED on in ");
-  Serial.print(DELAY_SEC);
-  Serial.println(" seconds.");
+  Serial.println("Armed. Move something close to the sensor.");
 }
 
 void loop() {
-  unsigned long elapsed = millis() / 1000UL;
+  if (done) return;
 
-  if (!done && elapsed < DELAY_SEC) {
-    int left = (int)(DELAY_SEC - elapsed);
-    if (left != lastShown) {
-      lastShown = left;
-      Serial.println(left);
-    }
-  }
+  long cm = readCm();
+  Serial.println(cm);
 
-  if (!done && elapsed >= DELAY_SEC) {
-    done = true;                          // set first so it can only fire once
-    Serial.println("LED ON");
-    digitalWrite(LED_PIN, HIGH);
+  if (cm > 0 && cm < TRIGGER_CM) hits++;
+  else hits = 0;
+
+  if (hits >= HITS_NEEDED) {
+    done = true;                          // set first so it only fires once
+    Serial.println("TRIGGERED");
+    digitalWrite(FIRE_PIN, HIGH);
     delay(ON_MS);
-    digitalWrite(LED_PIN, LOW);
-    Serial.println("Done. Idle. Reset the board to run again.");
+    digitalWrite(FIRE_PIN, LOW);
+    Serial.println("Done. Reset the board to run again.");
   }
+  delay(60);
 }
