@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 475" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">
+<title>PVC housing cross-section</title>
+<desc>Side cut through a 3 inch Schedule 40 PVC housing. Left end is a cemented cap with the hold magnet and piezo disc mounted against its inside face, a steel plate on the float outside. Electronics and the 4 AA holder sit behind. Right end is a threaded clean-out with an O-ring for arming and battery changes.</desc>
+<rect width="780" height="475" fill="#ffffff"/>
+<text x="20" y="26" font-size="15" font-weight="600" fill="#222">PVC housing cross-section (plan for now, not final)</text>
+<text x="20" y="44" font-size="11" fill="#555">3 inch Schedule 40 first, 4 inch if the parts do not fit. Not trusted until the dry run and through-the-wall tests pass.</text>
+
+<!-- float and plate -->
+<ellipse cx="62" cy="215" rx="44" ry="42" fill="#f0997b" stroke="#993c1d"/>
+<text x="48" y="219" font-size="11" fill="#4a1b0c">float</text>
+<rect x="106" y="178" width="14" height="74" fill="#5f5e5a"/>
+<text x="62" y="278" font-size="10" fill="#444">steel plate</text>
+<!-- cap -->
+<rect x="130" y="120" width="60" height="190" rx="4" fill="#afa9ec" stroke="#534ab7"/>
+<rect x="130" y="170" width="14" height="90" fill="#ffffff" stroke="#534ab7" stroke-dasharray="3 2"/>
+<text x="118" y="108" font-size="11" fill="#26215c">cemented end cap</text>
+<!-- pipe -->
+<rect x="190" y="130" width="440" height="14" fill="#cecbf6" stroke="#534ab7"/>
+<rect x="190" y="286" width="440" height="14" fill="#cecbf6" stroke="#534ab7"/>
+<!-- magnet and piezo -->
+<rect x="192" y="178" width="36" height="74" fill="#f5c4b3" stroke="#993c1d"/>
+<text x="196" y="212" font-size="10" fill="#4a1b0c">hold</text>
+<text x="196" y="224" font-size="10" fill="#4a1b0c">magnet</text>
+<rect x="192" y="150" width="8" height="24" fill="#faeeda" stroke="#ba7517"/>
+<text x="204" y="164" font-size="10" fill="#412402">piezo (glued flat)</text>
+<!-- electronics -->
+<rect x="250" y="168" width="110" height="86" rx="4" fill="#e1f5ee" stroke="#0f6e56"/>
+<text x="258" y="194" font-size="11" fill="#04342c">Pro Mini</text>
+<text x="258" y="210" font-size="11" fill="#04342c">DS3231</text>
+<text x="258" y="226" font-size="11" fill="#04342c">MOSFET + diode</text>
+<text x="258" y="242" font-size="11" fill="#04342c">piezo bias</text>
+<rect x="380" y="162" width="180" height="98" rx="4" fill="#faeeda" stroke="#ba7517"/>
+<text x="404" y="206" font-size="12" fill="#412402">4 AA holder</text>
+<text x="404" y="224" font-size="11" fill="#412402">(lithium cells)</text>
+<!-- clean-out adapter -->
+<rect x="630" y="124" width="60" height="182" rx="4" fill="#afa9ec" stroke="#534ab7"/>
+<rect x="690" y="150" width="34" height="130" rx="4" fill="#cecbf6" stroke="#534ab7"/>
+<circle cx="707" cy="160" r="5" fill="#2c2c2a"/>
+<circle cx="707" cy="270" r="5" fill="#2c2c2a"/>
+<text x="640" y="108" font-size="11" fill="#26215c">threaded clean-out + plug</text>
+<text x="640" y="322" font-size="10" fill="#26215c">O-ring (not an expanding</text>
+<text x="640" y="334" font-size="10" fill="#26215c">gripper plug)</text>
+<!-- callouts -->
+<text x="20" y="372" font-size="11" fill="#333">1. Magnet pull and piezo signal each cross only one wall (the end cap).</text>
+<text x="20" y="390" font-size="11" fill="#333">2. Dashed box: thin the cap from outside with a flat recess if the hold force drops too much.</text>
+<text x="20" y="408" font-size="11" fill="#333">3. Air gap between plate and cap cuts holding force fast. Measure through a scrap cap.</text>
+<text x="20" y="426" font-size="11" fill="#333">4. Sealed pipe full of air floats: tie it to the blocks with rope or strap, not zip ties.</text>
+<text x="20" y="450" font-size="11" fill="#333">Backup if PVC fails the dry run (40 ft, 1 week, towels inside): OtterBox-style dry box, same tests.</text>
+</svg>

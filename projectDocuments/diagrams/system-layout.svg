@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">
+<title>System layout: at rest and after release</title>
+<desc>Left: receiver, cinder blocks and PVC housing on the lake bottom at about 40 ft, float held on the housing end cap by a hold magnet, haul rope stored in a canister, optional tone from a boat. Right: after release the float is at the surface and a person hauls the rope by hand.</desc>
+<rect width="760" height="500" fill="#ffffff"/>
+<text x="20" y="26" font-size="15" font-weight="600" fill="#222">System layout (current plan, Nov 8)</text>
+
+<!-- LEFT PANEL: at rest -->
+<text x="20" y="52" font-weight="600" fill="#444">At rest (months)</text>
+<rect x="10" y="60" width="360" height="420" rx="8" fill="#f5f9fc" stroke="#c9d6df"/>
+<path d="M10 100 q15 -8 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="#378add" stroke-width="2"/>
+<text x="320" y="92" fill="#378add" font-size="11">surface</text>
+<!-- boat -->
+<path d="M40 82 L150 82 L135 100 L55 100 Z" fill="#d3d1c7" stroke="#5f5e5a"/>
+<line x1="95" y1="82" x2="95" y2="55" stroke="#5f5e5a"/>
+<text x="40" y="74" font-size="11" fill="#444">boat</text>
+<!-- cable and speaker -->
+<line x1="130" y1="95" x2="300" y2="240" stroke="#888780" stroke-dasharray="4 3"/>
+<rect x="295" y="235" width="22" height="14" rx="3" fill="#faeeda" stroke="#ba7517"/>
+<text x="40" y="190" font-size="11" fill="#444">underwater speaker</text>
+<text x="40" y="204" font-size="11" fill="#444">lowered on a cable</text>
+<text x="40" y="218" font-size="11" fill="#ba7517">(not decided)</text>
+<path d="M300 258 q-6 14 -14 22 M308 260 q-6 20 -16 30" fill="none" stroke="#ba7517" stroke-width="1.5" stroke-dasharray="3 2"/>
+<!-- depth arrow -->
+<line x1="28" y1="110" x2="28" y2="392" stroke="#888780"/>
+<path d="M24 118 L28 108 L32 118 M24 384 L28 394 L32 384" fill="none" stroke="#888780"/>
+<text x="38" y="260" font-size="11" fill="#444">about 40 ft</text>
+<!-- lake bottom -->
+<rect x="10" y="420" width="360" height="60" fill="#e8dcc4" stroke="#c9b98f"/>
+<text x="250" y="468" font-size="11" fill="#6b5a2e">lake bottom (silt)</text>
+<!-- cinder blocks -->
+<rect x="60" y="380" width="64" height="40" fill="#b4b2a9" stroke="#5f5e5a"/>
+<rect x="128" y="380" width="64" height="40" fill="#b4b2a9" stroke="#5f5e5a"/>
+<text x="62" y="438" font-size="11" fill="#444">cinder blocks</text>
+<!-- receiver -->
+<rect x="96" y="318" width="44" height="62" rx="10" fill="#9fe1cb" stroke="#0f6e56"/>
+<text x="100" y="354" font-size="11" fill="#04342c">receiver</text>
+<!-- strap -->
+<path d="M192 400 L214 400" stroke="#d85a30" stroke-width="3"/>
+<text x="190" y="448" font-size="10" fill="#993c1d">anchor strap</text>
+<!-- PVC housing vertical -->
+<rect x="236" y="320" width="46" height="100" rx="3" fill="#cecbf6" stroke="#534ab7"/>
+<rect x="232" y="312" width="54" height="12" rx="2" fill="#afa9ec" stroke="#534ab7"/>
+<text x="240" y="372" font-size="11" fill="#26215c">PVC</text>
+<text x="238" y="386" font-size="11" fill="#26215c">housing</text>
+<!-- steel plate and float -->
+<rect x="232" y="304" width="54" height="8" fill="#5f5e5a"/>
+<ellipse cx="259" cy="284" rx="30" ry="18" fill="#f0997b" stroke="#993c1d"/>
+<text x="243" y="288" font-size="11" fill="#4a1b0c">float</text>
+<text x="150" y="300" font-size="10" fill="#444">magnet latch</text>
+<!-- canister -->
+<rect x="300" y="340" width="52" height="60" rx="4" fill="#faeeda" stroke="#ba7517"/>
+<text x="304" y="366" font-size="10" fill="#412402">rope</text>
+<text x="304" y="378" font-size="10" fill="#412402">canister</text>
+<path d="M286 290 Q330 300 326 340" fill="none" stroke="#d85a30" stroke-width="2"/>
+<path d="M326 400 L326 412 L195 412 L195 420" fill="none" stroke="#d85a30" stroke-width="2"/>
+<text x="20" y="494" font-size="10" fill="#444">orange line = haul rope (float end to canister, canister to blocks)</text>
+
+<!-- RIGHT PANEL: after release -->
+<text x="400" y="52" font-weight="600" fill="#444">After release (release date, or tone from boat)</text>
+<rect x="390" y="60" width="360" height="420" rx="8" fill="#f5f9fc" stroke="#c9d6df"/>
+<path d="M390 100 q15 -8 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="#378add" stroke-width="2"/>
+<path d="M420 82 L530 82 L515 100 L435 100 Z" fill="#d3d1c7" stroke="#5f5e5a"/>
+<text x="420" y="74" font-size="11" fill="#444">boat, person hauls by hand</text>
+<ellipse cx="610" cy="96" rx="30" ry="14" fill="#f0997b" stroke="#993c1d"/>
+<text x="596" y="100" font-size="11" fill="#4a1b0c">float</text>
+<line x1="610" y1="110" x2="610" y2="388" stroke="#d85a30" stroke-width="2"/>
+<line x1="515" y1="96" x2="580" y2="96" stroke="#5f5e5a" stroke-dasharray="3 3"/>
+<text x="628" y="250" font-size="11" fill="#444">haul rope</text>
+<text x="628" y="264" font-size="11" fill="#444">carries the full pull</text>
+<text x="628" y="278" font-size="11" fill="#444">(about 35 lb underwater)</text>
+<rect x="390" y="420" width="360" height="60" fill="#e8dcc4" stroke="#c9b98f"/>
+<rect x="580" y="388" width="64" height="32" fill="#b4b2a9" stroke="#5f5e5a"/>
+<rect x="648" y="388" width="64" height="32" fill="#b4b2a9" stroke="#5f5e5a"/>
+<rect x="612" y="338" width="40" height="50" rx="9" fill="#9fe1cb" stroke="#0f6e56"/>
+<rect x="450" y="352" width="42" height="68" rx="3" fill="#cecbf6" stroke="#534ab7"/>
+<text x="440" y="440" font-size="11" fill="#26215c">housing stays down</text>
+<text x="600" y="444" font-size="11" fill="#444">blocks + receiver come up</text>
+<text x="600" y="458" font-size="11" fill="#444">with the haul</text>
+<text x="400" y="494" font-size="10" fill="#444">Backup only. The scientist's drag line grapple stays the main method.</text>
+</svg>

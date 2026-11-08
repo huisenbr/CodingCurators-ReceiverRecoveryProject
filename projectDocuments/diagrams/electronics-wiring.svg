@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 600" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">
+<title>Electronics wiring: timer, hold magnet and piezo tone trigger</title>
+<desc>Block-level wiring. DS3231 clock on I2C with its alarm pin on D2. D9 drives a logic-level MOSFET through 220 ohms, which powers the hold magnet with a flyback diode. A 35 mm piezo disc is biased to about 2.5 V by two 100k resistors and read on A0 through a 0.1 uF capacitor.</desc>
+<rect width="860" height="600" fill="#ffffff"/>
+<text x="20" y="26" font-size="15" font-weight="600" fill="#222">Electronics wiring (current plan, Nov 8)</text>
+<text x="20" y="44" font-size="11" fill="#555">Desk build: Arduino Nano on USB. Sealed build: 3.3V Pro Mini on lithium AA cells. Same wiring.</text>
+
+<!-- DS3231 -->
+<rect x="40" y="90" width="130" height="230" rx="8" fill="#eeedfe" stroke="#534ab7"/>
+<text x="62" y="112" font-weight="600" fill="#26215c">DS3231 clock</text>
+<text x="52" y="146" fill="#26215c">VCC</text>
+<text x="52" y="186" fill="#26215c">GND</text>
+<text x="52" y="226" fill="#26215c">SDA</text>
+<text x="52" y="266" fill="#26215c">SCL</text>
+<text x="52" y="306" fill="#26215c">SQW (alarm)</text>
+<!-- Nano -->
+<rect x="300" y="90" width="170" height="400" rx="8" fill="#e1f5ee" stroke="#0f6e56"/>
+<text x="330" y="112" font-weight="600" fill="#04342c">Arduino Nano / Pro Mini</text>
+<text x="310" y="146" fill="#04342c">5V / VCC</text>
+<text x="310" y="186" fill="#04342c">GND</text>
+<text x="310" y="226" fill="#04342c">A4 (SDA)</text>
+<text x="310" y="266" fill="#04342c">A5 (SCL)</text>
+<text x="310" y="306" fill="#04342c">D2 (wake)</text>
+<text x="408" y="146" fill="#04342c">D9 (fire)</text>
+<text x="396" y="366" fill="#04342c">D7 (bias on)</text>
+<text x="412" y="426" fill="#04342c">A0 (piezo)</text>
+<!-- DS3231 to Nano lines -->
+<line x1="170" y1="142" x2="300" y2="142" stroke="#e24b4a" stroke-width="2"/>
+<line x1="170" y1="182" x2="300" y2="182" stroke="#5f5e5a" stroke-width="2"/>
+<line x1="170" y1="222" x2="300" y2="222" stroke="#378add" stroke-width="2"/>
+<line x1="170" y1="262" x2="300" y2="262" stroke="#378add" stroke-width="2"/>
+<line x1="170" y1="302" x2="300" y2="302" stroke="#ba7517" stroke-width="2"/>
+
+<!-- D9 to MOSFET -->
+<line x1="470" y1="142" x2="500" y2="142" stroke="#ba7517" stroke-width="2"/>
+<rect x="500" y="130" width="50" height="24" rx="3" fill="#f1efe8" stroke="#5f5e5a"/>
+<text x="506" y="146" font-size="11">220 Ω</text>
+<line x1="550" y1="142" x2="590" y2="142" stroke="#ba7517" stroke-width="2"/>
+<circle cx="572" cy="142" r="3" fill="#ba7517"/>
+<line x1="572" y1="142" x2="572" y2="185" stroke="#5f5e5a" stroke-width="2"/>
+<rect x="562" y="185" width="20" height="40" fill="#f1efe8" stroke="#5f5e5a"/>
+<text x="476" y="208" font-size="11">10k gate to GND</text>
+<line x1="572" y1="225" x2="572" y2="240" stroke="#5f5e5a" stroke-width="2"/>
+<text x="560" y="254" font-size="10" fill="#5f5e5a">GND</text>
+
+<!-- MOSFET -->
+<rect x="590" y="110" width="100" height="90" rx="6" fill="#faeeda" stroke="#ba7517"/>
+<text x="598" y="130" font-weight="600" fill="#412402">IRLZ44N</text>
+<text x="598" y="146" font-size="11" fill="#412402">Gate</text>
+<text x="640" y="170" font-size="11" fill="#412402">Drain</text>
+<text x="640" y="192" font-size="11" fill="#412402">Source</text>
+<!-- magnet -->
+<line x1="690" y1="170" x2="720" y2="170" stroke="#d85a30" stroke-width="2"/>
+<rect x="700" y="60" width="70" height="60" rx="8" fill="#f5c4b3" stroke="#993c1d"/>
+<text x="706" y="82" font-size="11" fill="#4a1b0c">APW 32 mm</text>
+<text x="706" y="96" font-size="11" fill="#4a1b0c">hold magnet</text>
+<text x="706" y="110" font-size="10" fill="#4a1b0c">needs a pulse</text>
+<line x1="735" y1="120" x2="735" y2="170" stroke="#d85a30" stroke-width="2"/>
+<line x1="720" y1="170" x2="735" y2="170" stroke="#d85a30" stroke-width="2"/>
+<line x1="735" y1="60" x2="735" y2="40" stroke="#e24b4a" stroke-width="2"/>
+<text x="660" y="36" font-size="11" fill="#e24b4a">BATT+ (check magnet rated V)</text>
+<!-- flyback diode -->
+<line x1="705" y1="120" x2="705" y2="130" stroke="#d85a30" stroke-width="2"/>
+<line x1="765" y1="120" x2="765" y2="130" stroke="#d85a30" stroke-width="2"/>
+<text x="700" y="148" font-size="10" fill="#993c1d">flyback diode</text>
+<text x="700" y="160" font-size="10" fill="#993c1d">across magnet</text>
+<!-- source to GND -->
+<line x1="640" y1="200" x2="640" y2="240" stroke="#5f5e5a" stroke-width="2"/>
+<text x="628" y="254" font-size="10" fill="#5f5e5a">GND</text>
+
+<!-- Battery -->
+<rect x="40" y="400" width="130" height="90" rx="8" fill="#faeeda" stroke="#ba7517"/>
+<text x="52" y="424" font-weight="600" fill="#412402">Battery pack</text>
+<text x="52" y="442" font-size="11" fill="#412402">4 AA + 3 to 5 A fuse</text>
+<text x="52" y="458" font-size="11" fill="#412402">BATT+ to Nano VIN</text>
+<text x="52" y="474" font-size="11" fill="#412402">and to the magnet</text>
+<line x1="170" y1="430" x2="215" y2="430" stroke="#e24b4a" stroke-width="2"/>
+<text x="178" y="424" font-size="10" fill="#e24b4a">BATT+</text>
+<line x1="170" y1="470" x2="215" y2="470" stroke="#5f5e5a" stroke-width="2"/>
+<text x="178" y="464" font-size="10" fill="#5f5e5a">GND</text>
+<text x="40" y="512" font-size="10" fill="#555">All grounds joined. Nano power in sealed build: Pro Mini RAW/VCC.</text>
+
+<!-- Piezo bias -->
+<rect x="500" y="290" width="340" height="270" rx="8" fill="#f5f9fc" stroke="#c9d6df"/>
+<text x="512" y="312" font-weight="600" fill="#0c447c">Piezo tone listener</text>
+<line x1="470" y1="422" x2="560" y2="422" stroke="#ba7517" stroke-width="2"/>
+<path d="M470 362 L520 362 L520 322 L560 322 L560 334" fill="none" stroke="#ba7517" stroke-width="2"/>
+<!-- R1 -->
+<rect x="548" y="334" width="24" height="46" fill="#f1efe8" stroke="#5f5e5a"/>
+<text x="578" y="361" font-size="11">100k</text>
+<!-- node M -->
+<line x1="560" y1="380" x2="560" y2="400" stroke="#ba7517" stroke-width="2"/>
+<circle cx="560" cy="422" r="3" fill="#ba7517"/>
+<line x1="560" y1="400" x2="560" y2="422" stroke="#ba7517" stroke-width="2"/>
+<!-- R2 -->
+<line x1="560" y1="422" x2="560" y2="440" stroke="#ba7517" stroke-width="2"/>
+<rect x="548" y="440" width="24" height="46" fill="#f1efe8" stroke="#5f5e5a"/>
+<text x="578" y="467" font-size="11">100k</text>
+<line x1="560" y1="486" x2="560" y2="502" stroke="#5f5e5a" stroke-width="2"/>
+<text x="548" y="516" font-size="10" fill="#5f5e5a">GND</text>
+<text x="478" y="356" font-size="10" fill="#555">from D7</text>
+<!-- cap and piezo -->
+<line x1="560" y1="422" x2="620" y2="422" stroke="#ba7517" stroke-width="2"/>
+<rect x="620" y="408" width="44" height="28" fill="#f1efe8" stroke="#5f5e5a"/>
+<text x="623" y="426" font-size="10">0.1 µF</text>
+<line x1="664" y1="422" x2="690" y2="422" stroke="#ba7517" stroke-width="2"/>
+<circle cx="716" cy="422" r="26" fill="#faeeda" stroke="#ba7517"/>
+<text x="698" y="426" font-size="10" fill="#412402">piezo</text>
+<text x="692" y="462" font-size="10" fill="#412402">35 mm disc</text>
+<line x1="716" y1="448" x2="716" y2="496" stroke="#5f5e5a" stroke-width="2"/>
+<text x="722" y="494" font-size="10" fill="#5f5e5a">brass side to GND</text>
+<text x="620" y="400" font-size="10" fill="#555">to ceramic face</text>
+<text x="512" y="540" font-size="10" fill="#555">Check: A0 reads about 2.5 V at rest. Bias is powered from D7</text>
+<text x="512" y="553" font-size="10" fill="#555">only while listening (divider draws about 25 µA).</text>
+<text x="512" y="410" font-size="10" fill="#ba7517">node to A0</text>
+
+<!-- legend -->
+<text x="40" y="560" font-size="11" fill="#555">Lines:</text>
+<line x1="80" y1="556" x2="104" y2="556" stroke="#e24b4a" stroke-width="2"/><text x="108" y="560" font-size="11" fill="#555">power</text>
+<line x1="150" y1="556" x2="174" y2="556" stroke="#5f5e5a" stroke-width="2"/><text x="178" y="560" font-size="11" fill="#555">ground</text>
+<line x1="226" y1="556" x2="250" y2="556" stroke="#378add" stroke-width="2"/><text x="254" y="560" font-size="11" fill="#555">I2C</text>
+<line x1="290" y1="556" x2="314" y2="556" stroke="#ba7517" stroke-width="2"/><text x="318" y="560" font-size="11" fill="#555">signal</text>
+<text x="40" y="582" font-size="10" fill="#555">Open: the D7 bias switch and the timer-vs-tone logic are not decided yet.</text>
+</svg>
