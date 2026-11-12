@@ -76,7 +76,7 @@ How the desk sketch works now (Arduino Nano):
 2. The board samples the piezo on A0 in 200-sample windows at 8 kHz.
 3. A Goertzel filter checks how much of the energy is at the target tone (1000 Hz for testing).
 4. A window counts as a hit only if it is loud enough (rms above MIN_RMS, 3.0) and pure enough (ratio above MIN_RATIO, 0.5). It needs 8 hits in a row (about 0.2 s of tone).
-5. On a detection it drives the MOSFET pin (D9) high for 3 s, then keeps listening. It stays awake after the wake time and does not go back to sleep (v1, decided Nov 12). A repeat tone fires it again as a retry.
+5. On a detection it drives the MOSFET pin (D9) high for 3 s, then keeps listening. It stays awake after the wake time and does not go back to sleep (v1, decided Nov 12). A repeat tone fires it again as a retry, after a 5 s wait (WAIT_MS) so a long tone does not fire it back to back.
 
 Rms is how much the reading wiggles around its average (loudness). Ratio is the share of that energy that sits at the target tone (purity). Both have to pass, so quiet noise, claps and voices should not trigger it.
 

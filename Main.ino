@@ -15,6 +15,7 @@ const float MIN_RMS = 3.0;                // ignores near-silence
 const float MIN_RATIO = 0.5;              // 0 to 1, how pure the tone must be
 const int HITS_NEEDED = 8;                // windows in a row (~0.2 s of tone)
 const unsigned long ON_MS = 3000;         // how long the output stays on
+const unsigned long WAIT_MS = 5000;       // pause after firing before it listens again (retry spacing)
 // ======================
 
 const int N = 200;                        // samples per window
@@ -119,5 +120,6 @@ void loop() {
   digitalWrite(FIRE_PIN, HIGH);
   delay(ON_MS);
   digitalWrite(FIRE_PIN, LOW);
-  Serial.println("Fired. Still awake, still listening.");
+  Serial.println("Fired. Waiting, then listening again.");
+  delay(WAIT_MS);                         // ignores the tone while the magnet rests
 }

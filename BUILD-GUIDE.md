@@ -113,6 +113,7 @@ At the top of `Main.ino` is a block between `===== EDIT THESE =====` markers:
 | `MIN_RATIO` | 0.5 | How pure the tone must be (0 to 1). Raise to 0.6 or 0.7 if noise triggers it. |
 | `HITS_NEEDED` | 8 | Windows in a row (about 0.2 s). |
 | `ON_MS` | 3000 | How long the magnet is powered, in milliseconds. Shorten once you know the minimum that works. |
+| `WAIT_MS` | 5000 | Pause after each firing before it listens again, in milliseconds. A tone that is still playing will not fire the magnet back to back. It also lets the magnet rest between retries. |
 
 Do not lower `MIN_RMS` or `MIN_RATIO` to chase a weak signal. That moves the cutoff toward the noise and invites false triggers. Improve the signal instead (see the troubleshooting table).
 
