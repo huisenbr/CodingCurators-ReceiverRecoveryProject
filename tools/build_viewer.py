@@ -32,7 +32,7 @@ for i, p in enumerate(svgs):
 page = f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sensor release diagrams</title>
+<title>LURE diagrams</title>
 <style>
 body{{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f4f2;color:#222}}
 header{{padding:16px 20px 0}}
@@ -46,7 +46,7 @@ h1{{font-size:18px;margin:0 0 4px}}
 .panel svg{{width:100%;height:auto;display:block}}
 .file{{font-size:12px;color:#777;margin:8px 0 0;font-family:ui-monospace,Menlo,monospace}}
 </style></head><body>
-<header><h1>Sensor release: current diagrams</h1>
+<header><h1>LURE: current diagrams</h1>
 <p class="sub">Current plan as of Nov 8, 2026. Source files are plain SVG in the diagrams/ folder.</p></header>
 <div class="tabs">{''.join(tabs)}</div>
 {''.join(panels)}

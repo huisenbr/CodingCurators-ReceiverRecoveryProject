@@ -2,7 +2,7 @@
 <title>Electronics wiring: timer, hold magnet and piezo tone trigger</title>
 <desc>Block-level wiring. DS3231 clock on I2C with its alarm pin on D2. D9 drives a logic-level MOSFET through 220 ohms, which powers the hold magnet with a flyback diode. A 35 mm piezo disc is biased to about 2.5 V by two 100k resistors and read on A0 through a 0.1 uF capacitor.</desc>
 <rect width="860" height="600" fill="#ffffff"/>
-<text x="20" y="26" font-size="15" font-weight="600" fill="#222">Electronics wiring (current plan, Nov 8)</text>
+<text x="20" y="26" font-size="15" font-weight="600" fill="#222">LURE electronics wiring (current plan, Nov 8)</text>
 <text x="20" y="44" font-size="11" fill="#555">Desk build: Arduino Nano on USB. Sealed build: 3.3V Pro Mini on lithium AA cells. Same wiring.</text>
 
 <!-- DS3231 -->

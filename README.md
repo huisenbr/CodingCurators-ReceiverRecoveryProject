@@ -1,6 +1,6 @@
-# Sensor retrieval release
+# LURE: Lake Underwater Release Engine
 
-FLL BIOGLOW innovation project: a low-cost backup release that brings acoustic receivers up from the bottom of a lake (about 40 ft). It does not replace the scientist's drag line grapple. A marker float carries a haul rope to the surface and a person in a boat hauls up the rest.
+FLL BIOGLOW innovation project: LURE is a low-cost backup release that brings acoustic receivers up from the bottom of a lake (about 40 ft). It does not replace the scientist's drag line grapple. A marker float carries a haul rope to the surface and a person in a boat hauls up the rest.
 
 ## Firmware
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sensor release diagrams</title>
+<title>LURE diagrams</title>
 <style>
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f4f2;color:#222}
 header{padding:16px 20px 0}
@@ -15,14 +15,14 @@ h1{font-size:18px;margin:0 0 4px}
 .panel svg{width:100%;height:auto;display:block}
 .file{font-size:12px;color:#777;margin:8px 0 0;font-family:ui-monospace,Menlo,monospace}
 </style></head><body>
-<header><h1>Sensor release: current diagrams</h1>
+<header><h1>LURE: current diagrams</h1>
 <p class="sub">Current plan as of Nov 8, 2026. Source files are plain SVG in the diagrams/ folder.</p></header>
 <div class="tabs"><button class="tab active" data-id="system-layout">System layout: at rest and after release</button><button class="tab" data-id="electronics-wiring">Electronics wiring: timer, hold magnet and piezo tone trigger</button><button class="tab" data-id="pvc-housing-section">PVC housing cross-section</button></div>
 <section class="panel active" id="system-layout"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12">
 <title>System layout: at rest and after release</title>
 <desc>Left: receiver, cinder blocks and PVC housing on the lake bottom at about 40 ft, float held on the housing end cap by a hold magnet, haul rope stored in a canister, optional tone from a boat. Right: after release the float is at the surface and a person hauls the rope by hand.</desc>
 <rect width="760" height="500" fill="#ffffff"/>
-<text x="20" y="26" font-size="15" font-weight="600" fill="#222">System layout (current plan, Nov 8)</text>
+<text x="20" y="26" font-size="15" font-weight="600" fill="#222">LURE system layout (current plan, Nov 8)</text>
 
 <!-- LEFT PANEL: at rest -->
 <text x="20" y="52" font-weight="600" fill="#444">At rest (months)</text>
@@ -102,7 +102,7 @@ h1{font-size:18px;margin:0 0 4px}
 <title>Electronics wiring: timer, hold magnet and piezo tone trigger</title>
 <desc>Block-level wiring. DS3231 clock on I2C with its alarm pin on D2. D9 drives a logic-level MOSFET through 220 ohms, which powers the hold magnet with a flyback diode. A 35 mm piezo disc is biased to about 2.5 V by two 100k resistors and read on A0 through a 0.1 uF capacitor.</desc>
 <rect width="860" height="600" fill="#ffffff"/>
-<text x="20" y="26" font-size="15" font-weight="600" fill="#222">Electronics wiring (current plan, Nov 8)</text>
+<text x="20" y="26" font-size="15" font-weight="600" fill="#222">LURE electronics wiring (current plan, Nov 8)</text>
 <text x="20" y="44" font-size="11" fill="#555">Desk build: Arduino Nano on USB. Sealed build: 3.3V Pro Mini on lithium AA cells. Same wiring.</text>
 
 <!-- DS3231 -->
@@ -226,7 +226,7 @@ h1{font-size:18px;margin:0 0 4px}
 <title>PVC housing cross-section</title>
 <desc>Side cut through a 3 inch Schedule 40 PVC housing. Left end is a cemented cap with the hold magnet and piezo disc mounted against its inside face, a steel plate on the float outside. Electronics and the 4 AA holder sit behind. Right end is a threaded clean-out with an O-ring for arming and battery changes.</desc>
 <rect width="780" height="475" fill="#ffffff"/>
-<text x="20" y="26" font-size="15" font-weight="600" fill="#222">PVC housing cross-section (plan for now, not final)</text>
+<text x="20" y="26" font-size="15" font-weight="600" fill="#222">LURE PVC housing cross-section (plan for now, not final)</text>
 <text x="20" y="44" font-size="11" fill="#555">3 inch Schedule 40 first, 4 inch if the parts do not fit. Not trusted until the dry run and through-the-wall tests pass.</text>
 
 <!-- float and plate -->

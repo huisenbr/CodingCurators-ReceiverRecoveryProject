@@ -1,4 +1,6 @@
-# FLL innovation project: sensor retrieval for lake acoustic receivers
+# LURE (Lake Underwater Release Engine)
+
+FLL innovation project: sensor retrieval for lake acoustic receivers
 
 Updated: Nov 8, 2026. Copied from the Claude project doc "Main" in the Lego project.
 

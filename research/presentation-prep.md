@@ -1,4 +1,4 @@
-# Sensor Retrieval Project: Presentation Prep
+# LURE (Lake Underwater Release Engine): Presentation Prep
 
 Last updated: Nov 5, 2026. The final prototype is still in progress, so everything below is "where we are now," not the finished design.
 
