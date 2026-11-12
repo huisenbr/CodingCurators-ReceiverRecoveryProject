@@ -72,9 +72,11 @@
 <rect x="580" y="388" width="64" height="32" fill="#b4b2a9" stroke="#5f5e5a"/>
 <rect x="648" y="388" width="64" height="32" fill="#b4b2a9" stroke="#5f5e5a"/>
 <rect x="612" y="338" width="40" height="50" rx="9" fill="#9fe1cb" stroke="#0f6e56"/>
-<rect x="450" y="352" width="42" height="68" rx="3" fill="#cecbf6" stroke="#534ab7"/>
-<text x="440" y="440" font-size="11" fill="#26215c">housing stays down</text>
-<text x="600" y="444" font-size="11" fill="#444">blocks + receiver come up</text>
-<text x="600" y="458" font-size="11" fill="#444">with the haul</text>
+<rect x="664" y="334" width="42" height="54" rx="3" fill="#cecbf6" stroke="#534ab7"/>
+<line x1="685" y1="388" x2="685" y2="392" stroke="#d85a30" stroke-width="3"/>
+<text x="712" y="352" font-size="10" fill="#26215c">PVC housing</text>
+<text x="712" y="364" font-size="10" fill="#26215c">tied to blocks</text>
+<text x="460" y="444" font-size="11" fill="#444">blocks, receiver and housing all come up</text>
+<text x="460" y="458" font-size="11" fill="#444">together when the haul rope is pulled</text>
 <text x="400" y="494" font-size="10" fill="#444">Backup only. The scientist's drag line grapple stays the main method.</text>
 </svg>
