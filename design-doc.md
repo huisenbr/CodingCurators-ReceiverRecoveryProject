@@ -46,10 +46,10 @@ Design and prototype a low-cost, timed release that brings acoustic receivers up
      - Measure magnet hold force and piezo signal through the actual wall or cap thickness.
 
 ## CHOSEN DESIGN (updated Nov 1: hold magnet replaces burn wire)
-Battery, DS3231 real-time clock, Arduino, logic-level MOSFET, and a hold magnet that keeps the float latched with no power until the release date.
+Battery, DS3231 real-time clock, Arduino, logic-level MOSFET, and a hold magnet that keeps the float latched with no power until the tone arrives after the wake date.
 1. Arm with a push button (reed switch and magnet in the sealed version) and set the alarm date.
 2. Sleep for months while the clock keeps time. The magnet needs no power while it holds, so the battery only runs the clock.
-3. On the date, the MOSFET powers the hold magnet, which lets go of the float.
+3. On the set date the clock wakes the board, which listens for the coded tone from the boat. When it hears the tone, the MOSFET powers the hold magnet, which lets go of the float.
 4. The float rises and takes the haul rope to the surface. The board then switches itself off so it cannot drain the battery.
 
 Prototype on an Arduino Nano. The sealed version moves to a 3.3V Pro Mini with lithium AA cells.
@@ -104,7 +104,7 @@ Design notes and constraints:
 - Idle goal: under about 100 microamps average, otherwise the battery will not last months.
 
 ## PIEZO OPEN DESIGN QUESTIONS (not decided yet)
-- How do the timer and the tone work together? The desk sketch sleeps, wakes, then waits for a tone before it fires. Options: tone is the only trigger; tone is an early "release now" override with the timed release as a backup; or the unit listens only during set windows (for example 10 minutes a day). Fail-stuck risk matters here, because a unit that never hears the tone never releases.
+- DECIDED (Nov 12): the timer only saves power. Everything sleeps until the set date, then wakes and listens for the tone. The tone from the boat is the only thing that fires the release. The timer never releases the float on its own. Still open: how long it listens each time it wakes, and whether it listens in set windows (for example 10 minutes a day) or all the time after the wake date. Fail-stuck risk matters here, because a unit that never hears the tone never releases.
 - Listening window length and schedule, and what it costs in battery.
 - Which tone and how to code it (single tone, or a short sequence) so boat noise cannot trigger it.
 - How the boat plays the tone underwater, and at what range. Target depth is about 40 ft (the 100 ft case was also discussed).

@@ -56,7 +56,7 @@
 <text x="20" y="494" font-size="10" fill="#444">orange line = haul rope (float end to canister, canister to blocks)</text>
 
 <!-- RIGHT PANEL: after release -->
-<text x="400" y="52" font-weight="600" fill="#444">After release (release date, or tone from boat)</text>
+<text x="400" y="52" font-weight="600" fill="#444">After release (wake date passed, tone from boat)</text>
 <rect x="390" y="60" width="360" height="420" rx="8" fill="#f5f9fc" stroke="#c9d6df"/>
 <path d="M390 100 q15 -8 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="#378add" stroke-width="2"/>
 <path d="M420 82 L530 82 L515 100 L435 100 Z" fill="#d3d1c7" stroke="#5f5e5a"/>

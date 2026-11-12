@@ -120,5 +120,5 @@
 <line x1="150" y1="556" x2="174" y2="556" stroke="#5f5e5a" stroke-width="2"/><text x="178" y="560" font-size="11" fill="#555">ground</text>
 <line x1="226" y1="556" x2="250" y2="556" stroke="#378add" stroke-width="2"/><text x="254" y="560" font-size="11" fill="#555">I2C</text>
 <line x1="290" y1="556" x2="314" y2="556" stroke="#ba7517" stroke-width="2"/><text x="318" y="560" font-size="11" fill="#555">signal</text>
-<text x="40" y="582" font-size="10" fill="#555">Open: the D7 bias switch and the timer-vs-tone logic are not decided yet.</text>
+<text x="40" y="582" font-size="10" fill="#555">Open: the D7 bias switch and the listening window length are not decided yet.</text>
 </svg>
