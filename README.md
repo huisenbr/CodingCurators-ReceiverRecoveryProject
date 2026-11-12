@@ -10,6 +10,7 @@ FLL BIOGLOW innovation project: LURE is a low-cost backup release that brings ac
 
 | Path | What it is |
 |---|---|
+| `BUILD-GUIDE.md` | Step by step guide to build, test and arm a sealed unit |
 | `design-doc.md` | Full design doc: options, chosen design, PVC housing, piezo trigger, build log, tests, safety |
 | `research/presentation-prep.md` | Resources, Dr. Gerig's info, presentation talking points |
 | `diagrams/` | System layout, electronics wiring, PVC housing section (SVG) |
