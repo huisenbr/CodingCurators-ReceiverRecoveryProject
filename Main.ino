@@ -9,7 +9,7 @@ const int MIC_PIN = A0;
 const int FIRE_PIN = 9;       // MOSFET gate, same as before
 
 // ===== EDIT THESE =====
-const unsigned long SLEEP_SEC = 30;       // seconds asleep before it starts listening
+const unsigned long SLEEP_SEC = 30;       // seconds asleep once at power-up, then it stays awake
 const float TARGET_HZ = 1000.0;           // tone to listen for
 const float MIN_RMS = 3.0;                // ignores near-silence
 const float MIN_RATIO = 0.5;              // 0 to 1, how pure the tone must be
@@ -103,12 +103,13 @@ void setup() {
   rtc.disableAlarm(2);
   rtc.clearAlarm(1);
   rtc.writeSqwPinMode(DS3231_OFF);        // makes the pin an alarm output
+
+  sleepFor(SLEEP_SEC);                    // sleep once, until the wake time
+  Serial.println("Listening for tone. Staying awake from here on.");
 }
 
 void loop() {
-  sleepFor(SLEEP_SEC);
-
-  Serial.println("Listening for tone.");
+  // Stays awake and keeps listening. A later tone fires again (a retry).
   int hits = 0;
   while (hits < HITS_NEEDED) {
     hits = heardTone() ? hits + 1 : 0;
@@ -118,5 +119,5 @@ void loop() {
   digitalWrite(FIRE_PIN, HIGH);
   delay(ON_MS);
   digitalWrite(FIRE_PIN, LOW);
-  Serial.println("Done. Back to sleep.");
+  Serial.println("Fired. Still awake, still listening.");
 }

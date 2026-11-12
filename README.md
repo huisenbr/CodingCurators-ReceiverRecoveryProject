@@ -53,7 +53,7 @@ Start with the **[build guide](BUILD-GUIDE.md)**. It covers parts, Arduino setup
 
 ## Firmware
 
-`Main.ino` runs on an Arduino Nano for bench work and a 3.3V Pro Mini for the sealed build. It sleeps on a DS3231 alarm, listens on a piezo for a 1000 Hz tone with a Goertzel filter, then drives a MOSFET to fire the release. The git history has every earlier version of the sketch, oldest first.
+`Main.ino` runs on an Arduino Nano for bench work and a 3.3V Pro Mini for the sealed build. It sleeps once on a DS3231 alarm until the wake time, then stays awake, listens on a piezo for a 1000 Hz tone with a Goertzel filter, and drives a MOSFET to fire the release. The git history has every earlier version of the sketch, oldest first.
 
 ## Diagrams
 

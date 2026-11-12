@@ -13,7 +13,7 @@ This guide walks through building one, testing it on a bench, and getting it rea
 3. On the wake date the clock wakes the Arduino.
 4. The Arduino listens through a piezo disc for a 1000 Hz tone (the tone is adjustable). It only counts the tone if it is loud enough and pure enough, 8 windows in a row (about 0.2 seconds).
 5. When it hears the tone, it switches a MOSFET on for 3 seconds. That powers the hold magnet, which lets go of the float.
-6. The float rises. The unit goes back to sleep.
+6. The float rises. The unit stays awake and keeps listening, so a second tone fires the magnet again if the first one did not let go.
 
 The design doc ([design-doc.md](design-doc.md)) has the reasoning, what we tried before (a burn wire), and the open questions.
 
@@ -118,8 +118,8 @@ Do not lower `MIN_RMS` or `MIN_RATIO` to chase a weak signal. That moves the cut
 
 Two things about the current sketch to know:
 
-- After the unit wakes, it listens **until it hears the tone, with no time limit**. A Pro Mini that is awake and sampling uses far more current than one that is asleep, so a unit that wakes and never hears the tone will run its batteries down. A listening window with a timeout and a return to sleep is **TBD** (see the design doc, PIEZO OPEN DESIGN QUESTIONS).
-- After the magnet fires, the sketch goes back to sleeping for `SLEEP_SEC` again and repeats the cycle. For a one-shot release you may want it to sleep forever after firing. **Not changed yet.**
+- After the unit wakes, it stays awake and listens **with no time limit**. A Pro Mini that is awake and sampling uses far more current than one that is asleep, so a unit that wakes and never hears the tone will run its batteries down. A listening window with a timeout and a return to sleep is **TBD** (see the design doc, PIEZO OPEN DESIGN QUESTIONS).
+- After the magnet fires, the sketch stays awake and keeps listening. A later tone fires the magnet again, which works as a retry if the first pulse did not release the float. It does not go back to sleep.
 
 ## Step 4: Bench test everything dry
 
@@ -196,7 +196,7 @@ If the pipe fails the dry run or kills the magnet or piezo signal, the backup is
 | Random "TONE DETECTED" | Raise `MIN_RATIO` to 0.6 or 0.7 or `MIN_RMS`. Re-run the false trigger test. |
 | Output fires but the magnet does not let go | Check the magnet's rated voltage against the battery. Check battery sag under load, and cold. Check the flyback diode direction. |
 | Magnet will not hold the float | Check the gap between plate and magnet and the thickness of the cap. Hold force drops fast with distance. |
-| Batteries die early | Measure sleep current. Remove LEDs. Check the unit is not stuck awake listening. |
+| Batteries die early | Measure sleep current. Remove LEDs. Remember it stays awake and listening after the wake date, so it only sleeps cheaply before then. |
 
 ## Safety
 

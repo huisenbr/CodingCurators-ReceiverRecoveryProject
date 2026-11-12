@@ -72,11 +72,11 @@ Nov 8 add-on: a piezo tone listener can also trigger the MOSFET. See the next se
 Idea: a piezo disc listens for one coded tone. When it hears the tone, the board fires the same MOSFET output that drives the release. This is the low-cost version of how commercial acoustic releases work.
 
 How the desk sketch works now (Arduino Nano):
-1. DS3231 alarm wakes the board from sleep after a set time (30 s for testing).
+1. DS3231 alarm wakes the board from sleep once, after a set time (30 s for testing). After that it stays awake.
 2. The board samples the piezo on A0 in 200-sample windows at 8 kHz.
 3. A Goertzel filter checks how much of the energy is at the target tone (1000 Hz for testing).
 4. A window counts as a hit only if it is loud enough (rms above MIN_RMS, 3.0) and pure enough (ratio above MIN_RATIO, 0.5). It needs 8 hits in a row (about 0.2 s of tone).
-5. On a detection it drives the MOSFET pin (D9) high for 3 s, then goes back to sleep.
+5. On a detection it drives the MOSFET pin (D9) high for 3 s, then keeps listening. It stays awake after the wake time and does not go back to sleep (v1, decided Nov 12). A repeat tone fires it again as a retry.
 
 Rms is how much the reading wiggles around its average (loudness). Ratio is the share of that energy that sits at the target tone (purity). Both have to pass, so quiet noise, claps and voices should not trigger it.
 
