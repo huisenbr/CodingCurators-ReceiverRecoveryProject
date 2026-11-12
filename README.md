@@ -45,7 +45,7 @@ LURE's number is an estimate, not a final cost.
 | APW 32 mm hold magnet on the battery pack | Not tested yet |
 | PVC housing at 40 ft | Not tested yet |
 | Idle current on a 3.3V Pro Mini | Not tested yet |
-| Boat-side underwater speaker | Not decided |
+| Boat-side transducer (the lab already has one), range and tone coding | Not tested yet |
 
 ## Build one
 

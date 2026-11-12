@@ -96,7 +96,7 @@ Results so far (Nov 5):
 
 Design notes and constraints:
 - Piezo discs work best in the audio range, about 1 to 10 kHz, and usually have a resonance peak around 3 to 5 kHz. We plan to sweep the tone and pick the strongest frequency. Above 4 kHz the ADC sampling must be sped up (prescaler 64, about 16 kHz sampling).
-- Sound from a speaker in the air mostly bounces off the water surface. The boat side needs an underwater transducer (not decided yet).
+- Sound from a speaker in the air mostly bounces off the water surface. The boat side plays the tone through an underwater transducer. The scientists already have one, so we do not need to buy a speaker. We still need to check what frequencies it can play and at what range.
 - The disc should be glued flat to the inside of the housing wall (the flat end cap of the PVC pipe, not the curved side) so the wall carries the vibration, which also means no wires through the wall. Expect some signal loss through the wall (a guess of 10 to 20 dB, not measured). Test the bare disc in water and the disc mounted inside a scrap PVC cap.
 - If the signal is too weak, add a small op-amp stage (about 10 to 20x gain) between the piezo and A0.
 - We would avoid the 69 kHz band used by fish tags. At 1 to 4 kHz this is not an issue.
@@ -248,7 +248,7 @@ Adults handle all powered tests. Strong magnets can pinch fingers badly and can 
 - Which receiver model is used, and how is it anchored? (How is the receiver attached to the cinder blocks today?)
 - Are acoustic releases used at all, and why do some units still not come back?
 - Could one person in a boat realistically hand-haul the blocks from that depth?
-- Would it be workable to lower a small underwater speaker or transducer from the boat to send the release tone?
+- Can the transducer you already have play our release tone (about 1 to 4 kHz)? What frequencies, signals and range does it support, and how is it controlled?
 
 ## STATUS
 - Team presentation planned for Oct 9: mechanical vs. electronic options.

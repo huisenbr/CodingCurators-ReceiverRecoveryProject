@@ -28,7 +28,7 @@ The design doc ([design-doc.md](design-doc.md)) has the reasoning, what we tried
 | APW 32 mm hold magnet release on the battery pack | UNTESTED (magnet voltage and release current TBD) |
 | PVC housing at 40 ft for a week | UNTESTED |
 | Pro Mini (3.3V) version of the wiring and idle current | UNTESTED |
-| Underwater speaker on the boat, and range | TBD |
+| Playing the tone through the lab's existing transducer, range, and tone coding | TBD |
 
 ## Parts
 
@@ -180,7 +180,7 @@ If the pipe fails the dry run or kills the magnet or piezo signal, the backup is
 
 1. Do a land test pulse before every deployment: check the battery and that the magnet fires and lets go.
 2. Check the wake date on the Serial Monitor, seal the housing, tie it to the anchor, and deploy.
-3. On or after the wake date, lower an underwater speaker from the boat and play the tone. The unit releases and the float comes up. **The underwater speaker, range, and tone coding are TBD.** Sound from a speaker in the air mostly bounces off the water, so you need an underwater transducer.
+3. On or after the wake date, play the tone through the transducer your team already has on the boat. The unit releases and the float comes up. **The range and tone coding are TBD, and we have not yet checked that the transducer can play our tone.** Sound from a speaker in the air mostly bounces off the water, so it needs to be an underwater transducer. Check what frequencies and signal it can send.
 4. Follow the float to the surface and hand-haul the rope.
 5. If the float never appears, use your normal retrieval method.
 
